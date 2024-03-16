@@ -2,7 +2,6 @@ package com.gabo.cashcard;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-
 import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.net.URI;
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.ListAssert.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CashCardTest {
     @Autowired
@@ -47,7 +44,7 @@ class CashCardTest {
     @Test
     @DirtiesContext
     void shouldCreateANewCashCard() {
-        CashCard newCashCard = new CashCard(null, 250.00);
+        CashCard newCashCard = new CashCard(null, 250.00, "gabo");
         ResponseEntity<Void> createResponse = restTemplate.postForEntity("/cashcards", newCashCard, Void.class);
         assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
